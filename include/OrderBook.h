@@ -8,6 +8,7 @@ public:
     void printBook();
     void matchOrders();
     void processMarketOrder(Side side, int quantity);
+    bool cancelOrder(int orderId);
 
 private:
     std::map<double, std::vector<Order>, std::greater<double>> bids;

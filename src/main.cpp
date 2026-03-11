@@ -34,6 +34,16 @@ int main() {
         std::cout << std::endl;
         book.printBook();
     }
+
+    else if (type == "CANCEL") {
+        int id;
+        std::cin >> id;
+
+        book.cancelOrder(id);
+
+        std::cout << std::endl;
+        book.printBook();
+    }
 }
 
     return 0;

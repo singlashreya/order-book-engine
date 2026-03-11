@@ -1,5 +1,7 @@
-#include "../include/OrderBook.h"
+#include "OrderBook.h"
 #include <iostream>
+
+#include <algorithm>
 
 void OrderBook::addOrder(const Order& order) {
     if (order.side == Side::BUY)
@@ -112,4 +114,44 @@ void OrderBook::processMarketOrder(Side side, int quantity) {
             }
         }
     }
+}
+
+bool OrderBook::cancelOrder(int orderId) {
+
+    // Search bids
+    for (auto bidIt = bids.begin(); bidIt != bids.end(); ++bidIt) {
+        auto &orders = bidIt->second;
+
+        for (auto orderIt = orders.begin(); orderIt != orders.end(); ++orderIt) {
+            if (orderIt->order_id == orderId) {
+                orders.erase(orderIt);
+
+                if (orders.empty())
+                    bids.erase(bidIt);
+
+                std::cout << "CANCELLED " << orderId << std::endl;
+                return true;
+            }
+        }
+    }
+
+    // Search asks
+    for (auto askIt = asks.begin(); askIt != asks.end(); ++askIt) {
+        auto &orders = askIt->second;
+
+        for (auto orderIt = orders.begin(); orderIt != orders.end(); ++orderIt) {
+            if (orderIt->order_id == orderId) {
+                orders.erase(orderIt);
+
+                if (orders.empty())
+                    asks.erase(askIt);
+
+                std::cout << "CANCELLED " << orderId << std::endl;
+                return true;
+            }
+        }
+    }
+
+    std::cout << "ORDER NOT FOUND " << orderId << std::endl;
+    return false;
 }
