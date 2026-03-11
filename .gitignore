@@ -1,0 +1,37 @@
+# Build artifacts
+/build/
+*.o
+*.out
+*.exe
+*.app
+outDebug
+
+# Object and compiled files
+*.obj
+*.so
+*.dll
+*.dylib
+
+# CMake / build systems (future-proofing)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# VSCode machine-specific files
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
+
+# Optional (ignore if paths differ across machines)
+.vscode/c_cpp_properties.json
