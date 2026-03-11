@@ -1,19 +1,17 @@
 #include <iostream>
 #include <string>
-
-enum class Side {
-    BUY,
-    SELL
-};
-
-struct Order {
-    int order_id;
-    Side side;
-    double price;
-    int quantity;
-};
+#include "../include/OrderBook.h"
 
 int main() {
-    std::cout << "Order Book Engine Initialized" << std::endl;
+    OrderBook book;
+
+    Order order1{1, Side::BUY, 100.5, 10};
+    Order order2{2, Side::SELL, 101.0, 5};
+
+    book.addOrder(order1);
+    book.addOrder(order2);
+
+    book.printBook();
+
     return 0;
 }
