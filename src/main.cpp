@@ -1,17 +1,28 @@
 #include <iostream>
 #include <string>
-#include "../include/OrderBook.h"
+#include "OrderBook.h"
+#include "Order.h"
 
 int main() {
     OrderBook book;
 
-    Order order1{1, Side::BUY, 100.5, 10};
-    Order order2{2, Side::SELL, 101.0, 5};
+    std::string type, side;
+    double price;
+    int quantity;
 
-    book.addOrder({1, Side::BUY, 100, 10});
-    book.addOrder({2, Side::SELL, 99, 5});
+    while (std::cin >> type) {
 
-    book.printBook();
+        if (type == "LIMIT") {
+            std::cin >> side >> price >> quantity;
+
+            Side s = (side == "BUY") ? Side::BUY : Side::SELL;
+
+            book.addOrder({0, s, price, quantity});
+
+            // Print the state of the book only after processing a valid order
+            book.printBook();
+        }
+    }
 
     return 0;
 }
