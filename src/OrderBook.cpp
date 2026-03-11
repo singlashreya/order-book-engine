@@ -3,13 +3,20 @@
 
 void OrderBook::addOrder(const Order& order) {
     if (order.side == Side::BUY) {
-        buyOrders.push_back(order);
+        bids[order.price].push_back(order);
     } else {
-        sellOrders.push_back(order);
+        asks[order.price].push_back(order);
     }
 }
 
 void OrderBook::printBook() {
-    std::cout << "Buy Orders: " << buyOrders.size() << std::endl;
-    std::cout << "Sell Orders: " << sellOrders.size() << std::endl;
+    std::cout << "Bids:\n";
+    for (const auto& [price, orders] : bids) {
+        std::cout << price << " : " << orders.size() << " orders\n";
+    }
+
+    std::cout << "\nAsks:\n";
+    for (const auto& [price, orders] : asks) {
+        std::cout << price << " : " << orders.size() << " orders\n";
+    }
 }

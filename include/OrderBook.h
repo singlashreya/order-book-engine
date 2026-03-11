@@ -1,18 +1,6 @@
-#pragma once
-
+#include "Order.h"
+#include <map>
 #include <vector>
-
-enum class Side {
-    BUY,
-    SELL
-};
-
-struct Order {
-    int id;
-    Side side;
-    double price;
-    int quantity;
-};
 
 class OrderBook {
 public:
@@ -20,6 +8,6 @@ public:
     void printBook();
 
 private:
-    std::vector<Order> buyOrders;
-    std::vector<Order> sellOrders;
+    std::map<double, std::vector<Order>, std::greater<double>> bids;
+    std::map<double, std::vector<Order>> asks;
 };
