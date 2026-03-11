@@ -13,18 +13,28 @@ int main() {
 
     while (std::cin >> type) {
 
-        if (type == "LIMIT") {
-            std::cin >> side >> price >> quantity;
+    if (type == "LIMIT") {
+        std::cin >> side >> price >> quantity;
 
-            Side s = (side == "BUY") ? Side::BUY : Side::SELL;
+        Side s = (side == "BUY") ? Side::BUY : Side::SELL;
 
-            book.addOrder({nextOrderId++, s, price, quantity});
+        book.addOrder({nextOrderId++, s, price, quantity});
 
-            // Print the state of the book only after processing a valid order
-            std::cout << std::endl;
-            book.printBook();
-        }
+        std::cout << std::endl;
+        book.printBook();
     }
+
+    else if (type == "MARKET") {
+        std::cin >> side >> quantity;
+
+        Side s = (side == "BUY") ? Side::BUY : Side::SELL;
+
+        book.processMarketOrder(s, quantity);
+
+        std::cout << std::endl;
+        book.printBook();
+    }
+}
 
     return 0;
 }

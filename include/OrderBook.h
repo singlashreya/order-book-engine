@@ -7,6 +7,7 @@ public:
     void addOrder(const Order& order);
     void printBook();
     void matchOrders();
+    void processMarketOrder(Side side, int quantity);
 
 private:
     std::map<double, std::vector<Order>, std::greater<double>> bids;
