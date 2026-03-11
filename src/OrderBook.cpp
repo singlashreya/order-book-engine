@@ -12,13 +12,23 @@ void OrderBook::addOrder(const Order& order) {
 
 void OrderBook::printBook() {
     std::cout << "Bids:\n";
+
     for (const auto& [price, orders] : bids) {
-        std::cout << price << " : " << orders.size() << " orders\n";
+        int totalQty = 0;
+        for (const auto& order : orders)
+            totalQty += order.quantity;
+
+        std::cout << price << " : " << totalQty << std::endl;
     }
 
     std::cout << "\nAsks:\n";
+
     for (const auto& [price, orders] : asks) {
-        std::cout << price << " : " << orders.size() << " orders\n";
+        int totalQty = 0;
+        for (const auto& order : orders)
+            totalQty += order.quantity;
+
+        std::cout << price << " : " << totalQty << std::endl;
     }
 }
 
