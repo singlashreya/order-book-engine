@@ -5,6 +5,7 @@
 
 int main() {
     OrderBook book;
+    int nextOrderId = 1;
 
     std::string type, side;
     double price;
@@ -17,7 +18,7 @@ int main() {
 
             Side s = (side == "BUY") ? Side::BUY : Side::SELL;
 
-            book.addOrder({0, s, price, quantity});
+            book.addOrder({nextOrderId++, s, price, quantity});
 
             // Print the state of the book only after processing a valid order
             std::cout << std::endl;
