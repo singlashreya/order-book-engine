@@ -44,6 +44,10 @@ int main() {
         std::cout << std::endl;
         book.printBook();
     }
+    else if (type == "BOOK") {
+    std::cout << std::endl;
+    book.printBook();
+}
 }
 
     return 0;
