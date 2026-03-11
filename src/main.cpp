@@ -20,6 +20,7 @@ int main() {
             book.addOrder({0, s, price, quantity});
 
             // Print the state of the book only after processing a valid order
+            std::cout << std::endl;
             book.printBook();
         }
     }
